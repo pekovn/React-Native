@@ -1,0 +1,234 @@
+{
+	"info": {
+		"_postman_id": "af60afc6-03b3-4744-a23e-ac0964a28c23",
+		"name": "averato-new",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get_locations",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\n{\n    \"longitude\": \"27.855\", \n    \"latitude\": \"43.238\"\n}"
+				},
+				"url": {
+					"raw": "https://dev.api.vending.averato.com/map_machines",
+					"protocol": "https",
+					"host": [
+						"dev",
+						"api",
+						"vending",
+						"averato",
+						"com"
+					],
+					"path": [
+						"map_machines"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_payment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"module_serial_number\": \"123654\",\n    \"amount\": 0.1,\n    \"redirect_url\": \"https://sites.google.com/view/processing-payment/home\",\n    \"description\": \"Sample one-time payment\",\n    \"type\": \"fiat\",\n    \"pp_code\": \"sumup\",\n    \"rate\": \"1\",\n    \"currency\": \"BGN\"\n}"
+				},
+				"url": {
+					"raw": "https://dev.api.vending.averato.com/api/payments/",
+					"protocol": "https",
+					"host": [
+						"dev",
+						"api",
+						"vending",
+						"averato",
+						"com"
+					],
+					"path": [
+						"api",
+						"payments",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_payment_avax",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"module_serial_number\": \"123654\",\n    \"amount\": 0.1,\n    \"type\": \"crypto\",\n    \"pp_code\": \"avalanche\",\n    \"rate\": \"0.01\",\n    \"currency\": \"avax\",\n    \"pk\": \"1e46421d3cd273bb9f96a0d14a40e11a964d9806efc75b2dad4817a1051594b2\"\n}"
+				},
+				"url": {
+					"raw": "https://dev.api.vending.averato.com/api/payments/",
+					"protocol": "https",
+					"host": [
+						"dev",
+						"api",
+						"vending",
+						"averato",
+						"com"
+					],
+					"path": [
+						"api",
+						"payments",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get_payment_status",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://dev.api.vending.averato.com/api/payments/2r3oQG859EyfLWz7ApoD3FqKW6PtKyUt7WuLB9JS4HzSM9a2G7/status",
+					"protocol": "https",
+					"host": [
+						"dev",
+						"api",
+						"vending",
+						"averato",
+						"com"
+					],
+					"path": [
+						"api",
+						"payments",
+						"2r3oQG859EyfLWz7ApoD3FqKW6PtKyUt7WuLB9JS4HzSM9a2G7",
+						"status"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sent_payment_status",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "event_type",
+							"value": "CHECKOUT_STATUS_CHANGED",
+							"type": "text"
+						},
+						{
+							"key": "id",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://dev.api.vending.averato.com/payment/callback",
+					"protocol": "https",
+					"host": [
+						"dev",
+						"api",
+						"vending",
+						"averato",
+						"com"
+					],
+					"path": [
+						"payment",
+						"callback"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "complete_payment Copy",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"card\": {\n        \"name\": \"Anton Andonov\",\n        \"number\": \"\",\n        \"expiry_month\": \"\",\n        \"expiry_year\": \"\",\n        \"cvv\": \"\"\n    },\n    \"payment_type\": \"card\"\n\n}"
+				},
+				"url": {
+					"raw": "https://api.sumup.com/v0.1/checkouts/c3cd368e-78f7-4683-8256-aec236d48edd",
+					"protocol": "https",
+					"host": [
+						"api",
+						"sumup",
+						"com"
+					],
+					"path": [
+						"v0.1",
+						"checkouts",
+						"c3cd368e-78f7-4683-8256-aec236d48edd"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
